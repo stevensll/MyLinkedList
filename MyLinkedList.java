@@ -25,7 +25,7 @@ public class MyLinkedList {
     }
 
     public void add(int index, String value){
-        if (index < 0 || index >= size){
+        if (index < 0 || index > size){
             throw new IndexOutOfBoundsException();
         }
         Node newNode = new Node(value);
@@ -43,14 +43,14 @@ public class MyLinkedList {
     }
     
     public String get(int index){
-        if (index < 0 || index >= size){
+        if (index < 0 || index > size){
             throw new IndexOutOfBoundsException();
         }
         return getNodeAtIndex(index).getData();
     }
 
     public String set(int index, String value){
-        if (index < 0 || index >= size){
+        if (index < 0 || index > size){
             throw new IndexOutOfBoundsException();
         }
         String old = getNodeAtIndex(index).getData();
@@ -65,6 +65,7 @@ public class MyLinkedList {
             if(i!= this.size-1) s+=", ";
             else s+= "]";
         }
+        if (size == 0) s = "[]";
         return s;
     }
     // helper method to get a Node at specified index

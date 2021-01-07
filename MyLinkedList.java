@@ -92,4 +92,51 @@ public class MyLinkedList {
         }
         return current;
     }
+
+    public String toStringReversed() {
+        String s ="[";
+        if (size == 0) s = "[]";
+        else {
+            for (int i = size-1; i >= 0; i--){
+                s+=get(i);
+                if(i!=0) s+=", ";
+                else s+= "]";
+            }
+        }
+        return s;
+    }
+
+    public String remove(int index){
+        if (index  < 0 || index  >= size()) throw new IndexOutOfBoundsException();
+        String s = getNodeAtIndex(index).getData();
+        // size = 1 case
+        if (size == 1 ){
+            start.setNext(null);
+            end.setPrev(null);
+            size --;
+        } else {
+            // removing from head case
+            if(index == 0){
+                getNodeAtIndex(index+1).setPrev(null);
+                start = getNodeAtIndex(index+1);
+                size --;
+            // removing from tail case
+            } else if (index == size-1) {
+                getNodeAtIndex(index-1).setNext(null);
+                end = getNodeAtIndex(index-1);
+                size --;
+            // middle
+            } else {
+                getNodeAtIndex(index-1).setNext(getNodeAtIndex(index+1));
+                getNodeAtIndex(index+1).setPrev(getNodeAtIndex(index-1));
+                size --;
+            }
+        }
+        
+        return s;
+    }
+
+
+
+
 }

@@ -1,16 +1,17 @@
+import java.util.LinkedList;
+
 public class StevenTester {
     public static void main(String[] args) {
         MyLinkedList test = new MyLinkedList();
-        test.add("1"); 
-        System.out.println(test.get(0));
-        test.add("2"); 
-        System.out.println(test.get(0));
-        test.add("3"); 
-        System.out.println(test.get(0));
-        System.out.println(test.toString());
-        test.add(2, "4");
-        System.out.println(test.toString());
-        test.set(2, "3");
-        System.out.println(test.toString());
+        if(test.size() != 0) System.out.println("LinkedList constructed with size different than 0");
+        System.out.println(test.toString() + "| should return []");
+        System.out.println("ADD AT END TESTS");
+        test.add("3");
+        System.out.println(test.toString() + "| should return [3]");
+        test.add("4");
+        System.out.println(test.toString() + "| should return [3,3]");
+        System.out.println("ADD AT INDEX TESTS");
+     
+
     }
 }

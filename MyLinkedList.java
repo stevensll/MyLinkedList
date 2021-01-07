@@ -43,14 +43,14 @@ public class MyLinkedList {
     }
     
     public String get(int index){
-        if (index < 0 || index > size){
+        if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
         return getNodeAtIndex(index).getData();
     }
 
     public String set(int index, String value){
-        if (index < 0 || index > size){
+        if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
         String old = getNodeAtIndex(index).getData();

@@ -135,7 +135,20 @@ public class MyLinkedList {
         
         return s;
     }
-
+    /*
+    *@postcondition: All of the elements from other are removed from the other, and connected to the end of this linked list.
+    *@postcondition: The size of other is reduced to 0.
+    *@postcondition: The size of this is now the combined sizes of both original lists.
+    SHOULD BE CONSTANT RUN TIME.
+    */
+    public void extend(MyLinkedList other){
+        this.end.setNext(other.start);
+        other.start.setPrev(this.end);
+        this.size = size + other.size();
+        other.size = 0;
+        other.start = null;
+        other.end = null;
+    }
 
 
 

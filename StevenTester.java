@@ -8,5 +8,9 @@ public class StevenTester {
         test.add("3"); 
         System.out.println(test.get(0));
         System.out.println(test.toString());
+        test.add(2, "4");
+        System.out.println(test.toString());
+        test.set(2, "3");
+        System.out.println(test.toString());
     }
 }

@@ -2,23 +2,45 @@ public class MyLinkedList {
     private int size;
     private Node start,end;  
     public MyLinkedList(){
-        /*create a constructor*/
+        size = 0;
         }
+    
     public int size(){
-        return 0;
-
+        return size;
     }
     public boolean add(String value){
+        Node newNode = new Node(value);
+        if(size == 0) {
+            start = newNode;
+            end = newNode;
+            size++;
+        }
+        else{
+            end.setNext(newNode);
+            newNode.setPrev(end);
+            end = newNode;
+            size++;
+        }
         return true;
+    }
+
+    public void add(int index, String value){
 
     }
-    public boolean add(int index, String value){
-        return true;
-
-    }
+    
     public String get(int index){
-        return null;
-
+        if (index < 0 || index >= size){
+            throw new IndexOutOfBoundsException();
+        }
+        Node current = start;
+        String v = "";
+        for(int i = 0; i<size; i++){
+            if(i == index){
+                v = current.getData();
+            }
+            else current = current.getNext();
+        }
+        return v;
     }
 
     public String set(int index, String value){
@@ -26,7 +48,13 @@ public class MyLinkedList {
 
     }
     public String toString(){
-        return null;
+        String s = "[";
+        for(int i  = 0; i< this.size; i++){
+            s+=this.get(i);
+            if(i!= this.size-1) s+=", ";
+            else s+= "]";
+        }
+        return s;
     }
     //Any helper method that returns a Node object MUST BE PRIVATE!
 }

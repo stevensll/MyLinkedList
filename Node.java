@@ -20,7 +20,7 @@ public class Node{
     public Node getPrev(){
         return prev;
     }
-    public void setPrev(){
+    public void setPrev(Node prev){
         this.prev = prev;
     }
 }

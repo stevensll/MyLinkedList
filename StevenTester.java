@@ -1,52 +1,58 @@
-
+import java.util.*;
 public class StevenTester {
     public static void main(String[] args) {
-
         MyLinkedList test = new MyLinkedList();
-        if(test.size() != 0) System.out.println("LinkedList constructed with size different than 0");
-        // System.out.println(test.toString() + "| should return []");
-        // System.out.println("ADD AT END TESTS");
-        test.add("3");
-        // System.out.println(test.toString() + "| should return [3]");
-        test.add("4");
-        test.add("5");
-        test.add("6");
-        test.add("7");
-        test.add("8");
-        // System.out.println(test.toString() + "| should return [3,3]");
-        // System.out.println("ADD AT INDEX TESTS");
-        // System.out.println(test.toStringReversed());
-
-        //passed Mr. K's basic tester
-        /*
-        test.remove(2);
-        System.out.println(test.toString());
-        test.remove(0);
-        System.out.println(test.toString());
-        test.remove(3);
-        System.out.println(test.toString());
-        test.remove(0);
-        test.remove(0);
-        test.remove(0);
-        System.out.println(test.toString());
-        */
-        MyLinkedList a = new MyLinkedList();
-        MyLinkedList b = new MyLinkedList();
+        LinkedList<String> list = new LinkedList<String>();
         for(int i = 0; i < 10; i++){
-          if(i < 5){
-            a.add(i+"");
-          }else{
-            b.add(i+"");
-          }
+          list.add("" + i);
+          test.add("" + i);
         }
-        System.out.println();
-        System.out.println("A:"+a+a.size());
-        System.out.println("B:"+b+b.size());
-    
-        a.extend(b);
-        System.out.println("A:"+a+a.size());
-        System.out.println("B:"+b+b.size());
-        System.out.println("A reversed:"+a.toStringReversed()+a.size());
-        System.out.println("B reversed:"+b.toStringReversed()+b.size());        
+        
+        System.out.println("add() at end test");
+        if (!compare(test, list)) debug(test, list);
+       
+        System.out.println("add() at index test");
+        try {
+          test.add(11, "e");
+          System.out.println("add() at index should throw IndexOutOfBounds exception for index < 0 || index > size");
+        } catch (IndexOutOfBoundsException e) {
+        }
+        test.add(0, "-1");
+        list.add(0, "-1");
+        test.add(11, "11");
+        list.add(11, "11");
+        test.add(3, "z");
+        list.add(3, "z");
+        if (!compare(test, list)) debug(test, list);
+        
+        System.out.println("extend() test");
+        MyLinkedList test2 = new MyLinkedList();
+        LinkedList<String> list2 = new LinkedList<String>();
+        for(int i = 0; i < 10; i++){
+          list2.add("" + i);
+          test2.add("" + i);
+        }
+        test.extend(test2);
+        list.addAll(list2);
+        list2.clear();
+        if (!compare(test, list)) debug(test, list);
+        if (!compare(test2, list2)) debug(test2, list2);
+        
+        System.out.println("remove() test");
+        for(int i = list.size()-1; i >=0; i--){
+          list.remove(i);
+          test.remove(i);
+        }
+        if (!compare(test, list)) debug(test, list);
+
+
     }
+    public static boolean compare (MyLinkedList t, LinkedList<String> list ){
+      return t.toString().equals(list.toString()) && t.size() == list.size();
+    }
+    public static void debug (MyLinkedList t, LinkedList<String> list ){
+      System.out.println("expected " + list.toString() + " size " + list.size());
+      System.out.println("got " + t.toString() + " size " + t.size());
+    }
+
 }

@@ -114,25 +114,24 @@ public class MyLinkedList {
             start.setNext(null);
             end.setPrev(null);
             size --;
-        } else {
+        } else if(index == 0){
             // removing from head case
-            if(index == 0){
-                getNodeAtIndex(index+1).setPrev(null);
                 start = getNodeAtIndex(index+1);
+                start.setPrev(null);
                 size --;
             // removing from tail case
-            } else if (index == size-1) {
-                getNodeAtIndex(index-1).setNext(null);
+        } else if (index == size-1) {
                 end = getNodeAtIndex(index-1);
+                end.setNext(null);
                 size --;
             // middle
-            } else {
-                getNodeAtIndex(index-1).setNext(getNodeAtIndex(index+1));
-                getNodeAtIndex(index+1).setPrev(getNodeAtIndex(index-1));
+        } else {
+                Node before = getNodeAtIndex(index - 1);
+                Node after = getNodeAtIndex(index + 1);
+                before.setNext(after);
+                after.setPrev(before);
                 size --;
-            }
-        }
-        
+                }
         return s;
     }
     /*
@@ -144,14 +143,15 @@ public class MyLinkedList {
     public void extend(MyLinkedList other){
         if (other.size == 0){
             return;
-        } else if(this.size == 0){
+        }  
+        if(this.size == 0){
             this.start = other.start;
-            this.end = other.start;
         }
+        else if(other.size>0){
             this.end.setNext(other.start);
             other.start.setPrev(this.end);
+        }
             this.end = other.end;
-            
             this.size += other.size();
             other.size = 0;
             other.start = null;

@@ -10,7 +10,7 @@ public class StevenTester {
         
         System.out.println("add() at end test");
         if (!compare(test, list)) debug(test, list);
-       
+
         System.out.println("add() at index test");
         try {
           test.add(11, "e");
@@ -37,6 +37,7 @@ public class StevenTester {
         list2.clear();
         if (!compare(test, list)) debug(test, list);
         if (!compare(test2, list2)) debug(test2, list2);
+  
         
         System.out.println("remove() test");
         for(int i = list.size()-1; i >=0; i--){
@@ -45,6 +46,24 @@ public class StevenTester {
         }
         if (!compare(test, list)) debug(test, list);
 
+        System.out.println("extend() empty lists tests");
+        MyLinkedList e1 = new MyLinkedList();
+        MyLinkedList e2 = new MyLinkedList();
+        e1.extend(e2);
+        System.out.println("should be [] and [], got:" + e1.toString() + " and " + e2.toString());
+        e1.add("3");
+        e1.extend(e2);
+        System.out.println("should be [3] and [], got:" + e1.toString() + " and " + e2.toString());
+        e1.remove(0);
+        e2.add("3");
+        e1.extend(e2);
+        System.out.println("should be [3] and [], got:" + e1.toString() + " and " + e2.toString());
+
+        MyLinkedList e4 = new MyLinkedList();
+        MyLinkedList e5 = new MyLinkedList();
+        e5.add("e");
+        e4.extend(e5);
+        System.out.println("should be [e] and [], got:" + e4.toString() + " and " + e5.toString());
 
     }
     public static boolean compare (MyLinkedList t, LinkedList<String> list ){

@@ -142,14 +142,19 @@ public class MyLinkedList {
     SHOULD BE CONSTANT RUN TIME.
     */
     public void extend(MyLinkedList other){
-        this.end.setNext(other.start);
-        other.start.setPrev(this.end);
-        this.size = size + other.size();
-        other.size = 0;
-        other.start = null;
-        other.end = null;
+        if (other.size == 0){
+            return;
+        } else if(this.size == 0){
+            this.start = other.start;
+            this.end = other.start;
+        }
+            this.end.setNext(other.start);
+            other.start.setPrev(this.end);
+            this.end = other.end;
+            
+            this.size += other.size();
+            other.size = 0;
+            other.start = null;
+            other.end = null; 
     }
-
-
-
 }
